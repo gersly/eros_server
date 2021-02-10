@@ -1,9 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const Comments = require('./commentModel')
-const Users = require('./userModel')
 
-const Posts = db.define('posts', {
+
+const Comments = db.define('comments', {
     uuid:{
         type: Sequelize.UUID,
         allowNull: false,
@@ -15,21 +14,14 @@ const Posts = db.define('posts', {
         type: Sequelize.UUID,
         allowNull: false,
     },
+    postUuid:{
+        type: Sequelize.UUID,
+        allowNull: false,
+    },
     content: {
         type: Sequelize.STRING,
         allowNull: false,
-    },
-    description: {
-        type: Sequelize.TEXT,
-        allowNull: true
-    },
-    categoryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
     }
 });
 
-Posts.hasMany(Comments)
-Comments.belongsTo(Posts)
-
-module.exports = Posts;
+module.exports = Comments;

@@ -1,28 +1,41 @@
 const Posts = require('../models/postModel')
+const Comments = require('../models/commentModel')
+const Users = require('../models/userModel')
 
 const getAllPosts = (req, res, next) => {
     Posts
-    // .findAll({
-      // include: Users,
-      // attributes: { exclude: ['password'] }
-    //   attributes: ['content', 'userId', 'votes', 'createdAt', 'groupId', 'id'] ,
-    //   include: Comment
-    // })
-    .findAll()
+    .findAll({
+      include: [
+        { model: Users, attributes: ['name']},
+        {model : Comments, attributes: ['content', 'createdAt']}
+      ],
+      attributes: ['content', 'description', 'createdAt', 'uuid', 'categoryId'] 
+    })
     .then(posts => res.json(posts))
     .catch(next)
 }
 
 const getPostById = (req, res, next) => {
+  console.log(req.params.postId)
     Posts
     .findOne({
-    //  include: {
-    //    model: Comment
-    //  },
-    //  attributes: { exclude: ['updatedAt'] } ,
+      include: [
+        {model: Users, attributes: ['name']},
+        {model : Comments, attributes: ['content', 'createdAt']}
+      ],
+      attributes: ['content', 'description', 'createdAt', 'uuid', 'categoryId'] ,
       where: {uuid: req.params.postId},
       })
-    .then(post => res.status(200).json(post))
+    .then(post => {
+      if(post == null){
+        res.status(404).send({
+          success: false,
+          message: 'Could not found this post.'
+        })
+      }else{
+        res.status(200).json(post)
+      }
+    })
     .catch(next)
 }
 
