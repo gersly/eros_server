@@ -22,16 +22,18 @@ const userRouter = require('./routes/userRouter')
 const testRouter = require('./routes/testRouter')
 const authRouter = require('./routes/authRouter')
 const commentRouter = require('./routes/commentRouter')
+const postRouter = require('./routes/postRouter')
 
 //Controllers
 app.use("/api/v1", 
         userRouter,
         testRouter,
         authRouter,
-        commentRouter
+        commentRouter,
+        postRouter
         )
 
-db.sync({ force: true })
+db.sync({ force: false })
 .then(async () => {
     console.info(`Database is connected`)
 })

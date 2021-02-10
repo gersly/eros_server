@@ -8,8 +8,11 @@ const Posts = db.define('posts', {
         allowNull: false,
         unique: true,
         primaryKey: true,
-        type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
+    },
+    userUuid:{
+        type: Sequelize.UUID,
+        allowNull: false,
     },
     content: {
         type: Sequelize.STRING,
@@ -19,10 +22,12 @@ const Posts = db.define('posts', {
         type: Sequelize.TEXT,
         allowNull: true
     },
-    // category: {
-    //     type: Sequelize.INTEGER,
-    //     allowNull: false
-    // }
+    categoryId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    }
 });
+
+
 
 module.exports = Posts;

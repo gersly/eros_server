@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-
+const Posts = require('./postModel')
 
 const Users = db.define('users', {
     uuid:{
@@ -25,5 +25,7 @@ const Users = db.define('users', {
         allowNull: false,
     }
 });
+
+Users.hasMany(Posts)
 
 module.exports = Users;
