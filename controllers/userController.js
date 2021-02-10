@@ -20,11 +20,13 @@ const createUser = (req, res, next) => {
 			.then(result => {
 				if (result) {
 					res.status(400).send({ "message": "Email already in use", "success" : false });
+				}else{
+					return Users.create(user)
 				}
 			})
-			.then(() => {
-				return Users.create(user)
-			})
+			// .then(() => {
+				
+			// })
 			.then(() => {
 				res.status(201).send({"message": "Registration successfull", "success" : true})
 			})
