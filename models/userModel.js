@@ -29,6 +29,7 @@ const Users = db.define('users', {
 
 Users.hasMany(Posts)
 Users.hasMany(Comments)
+// Comments.belongsTo(Users)
 Posts.belongsTo(Users)
 
 module.exports = Users;

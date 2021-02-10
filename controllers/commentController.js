@@ -1,5 +1,6 @@
 const Comments = require('../models/commentModel')
 const Posts = require('../models/postModel')
+const Users = require('../models/userModel')
 
 const getCommentsByPostId = (req, res, next) => {
     const {postId} = req.params
@@ -8,8 +9,9 @@ const getCommentsByPostId = (req, res, next) => {
     .findAndCountAll({
         where:{
             postUuid: postId
+            
         },
-        attributes: { exclude: ['userUuid', 'updatedAt', 'postUuid'] },
+        attributes: { exclude: [ 'updatedAt', 'postUuid'] },
     })
     .then(comments => {
       comments.rows.map(comment => 

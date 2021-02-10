@@ -38,7 +38,7 @@ app.use("/api/v1",
         postRouter
         )
 
-db.sync({ force: false })
+db.sync({ force: true })
 .then(async () => {
     console.info(`Database is connected`)
     await Users.create({
