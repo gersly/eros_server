@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const bcrypt = require('bcrypt')
-const cryptoRandomString = require('crypto-random-string');
 
 //Configure server port
 const app = express();
