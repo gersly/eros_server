@@ -40,9 +40,9 @@ const getPostById = (req, res, next) => {
 }
 
 const createPost = (req, res, next) => {
-    const {userUuid, categoryId, content, description} = req.body
+    const {userUuid, content, description} = req.body
 
-    if (userUuid && content && categoryId && description) {
+    if (userUuid && content && description) {
       console.info("Creating a post", req.body)
       Posts
         .create(req.body)
@@ -51,7 +51,7 @@ const createPost = (req, res, next) => {
         })
         .catch(console.error);
     } else {
-     if(content.length < 1){
+     if(!content){
       res.status(400).send({"message": "You can not create an empty post"});
      }
     }
