@@ -19,7 +19,7 @@ const Comments = db.define('comments', {
         allowNull: false,
     },
     content: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
     }
 });
