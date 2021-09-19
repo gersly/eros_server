@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 //Configure server port
 const app = express();
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 6000;
 app.listen(port, () => console.info(`App server up and running locally on port ${port}`));
 
 // Middleware
